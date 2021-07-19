@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+        #cont{
+            width:80%;
+            height:500px;
+            border:2px solid black;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns:  20% 20% 20% 20%;
+            grid-template-rows: 400px 400px;
+            grid-gap:5%;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .card{
+            border:2px solid rgb(156, 11, 11);
+        }
+        .card img{
+            width:90%;
+            height: 200px;
+            
+        }
+       #b1{
+           margin-left:550px;
+           margin-top: 20px;
+          
+        }
+
+    </style>
+</head>
+<body>
+    <div id="cont"> </div>
+        
+
+      
+
+
+
+   
+    <button id='b1' onclick=showCart()>Go to My Cart</button>
+    <button id='b2'onclick=sortbp()>Sort By Price</button>
+    
+</body>
+</html>
+
+<script>
+
+var data = [
+    {
+        Name:"Necklace-1",
+        Brand:"tanisq",
+        Image:"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRqJv8y1LAmqab2beD4TdKhdYbE8pQhgyg4xVa_l-vtxR8eHET8K2EBEcaQOcKGso1n0-WZ-r-KOFg&usqp=CAc",
+        price:20000
+    }  ,
+
+    {
+        Name:"Necklace-2",
+        Brand:"D damas",
+        Image:"https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTG1Ih1dYjOa3aNEXqIj3cv0XE5fcCy55147Pp8VegN6EQH2a1jSdo1p_eKNgy_D4KZRzUAxQPpNgoA5YfCU6M-txmBTB6bnkVxlUSSCkDP&usqp=CAc",
+        price:11000
+    } , 
+
+    {
+        Name:"Necklace-3",
+        Brand:"Kalyani",
+        Image:"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTs5fEJxrFOfHc35mkRqSS_7qZ2TN_GAt1pwZTDW2v7Akmv1e1Ofva2uE_T_4nXvMRXDSKgGvhS-g&usqp=CAc",
+        price:11000,
+    }  ,
+
+    {
+        Name:"Necklace-4",
+        Brand:"xyz",
+        Image:"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ-Ost7-6HMxhVWdy5vHWpFS9Fd5y-g_EIsddMZAwIGIA7YBfLFziGzRgxuZ7DpKoTfAKLzHXveTFVCqOfeYvS7cRVzP3FqhHWyWjZBTuWcwI-IFx-hyW7l&usqp=CAc",
+        price:11000
+    }  
+]
+
+localStorage.setItem('product',JSON.stringify(data));
+
+var main_div = document.getElementById('cont')
+
+function appendProduct(el){
+
+    var card = document.createElement('div');
+
+    let p_name =document.createElement('h2');
+    p_name.innerHTML= el.Name; 
+
+
+    let p_brand =document.createElement('p');
+    p_brand.innerHTML= el.Brand;
+    
+    let p_img =document.createElement('img');
+    p_img.src= el.Image;
+
+    let p_price =document.createElement('h4');
+    p_price.innerHTML= el.price;
+
+    var btn = document.createElement('button');
+    btn.innerText="Add to cart";
+
+    btn.addEventListener('click', function(){
+        addtocart(el)
+    })
+
+
+    card.append(p_name,p_brand,p_img,p_price,btn);
+
+    cont.append(card);
+
+
+
+
+
+
+}
+function showProduct(){
+    let data= JSON.parse(localStorage.getItem('product'));
+
+    data.forEach(function(el){
+        appendProduct(el);
+    });
+}
+
+showProduct();
+
+function addtocart(obj){
+
+    let arr;
+     arr = localStorage.getItem('cartitem');
+
+     if(arr==null){
+         arr=[];
+     }
+     else{
+         arr=JSON.parse(localStorage.getItem('cartitem'));
+     }
+arr.push(obj);
+alert('Successfully added to your cart')
+
+localStorage.setItem('cartitem',JSON.stringify(arr));
+
+
+
+}
+
+function showCart(){
+    window.location.href="cart.html"
+}
+
+function sortbp(){
+
+    let Price = Json.parse(localStorage.getItem('product'));
+    Price = Price.sort(function(a,b){
+        return a.price - b.price
+    })
+    showProduct(Price);
+}
+
+
+
+
+
+
+</script>

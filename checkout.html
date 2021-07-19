@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<style>
+    h1{
+        font-family: 'Montserrat', sans-serif;
+    }
+    div{
+        font-family: 'Montserrat', sans-serif;
+    }
+</style>
+<body>
+    <h1>This is checkout page</h1> 
+    <div id="adreess">
+        <h2>Put Your Address There</h2>
+        <input type="text" id="input">
+        <button onclick="order()">PAYMENTS</button>
+    
+    </div> 
+    
+</body>
+</html>
+
+<script>
+
+    
+function order() {
+        var input = document.getElementById('input');
+    if(input ==null){
+        alert('Please Fill Your Address')
+    }
+    else{
+        window.location.href="order.html"
+    }
+    }
+</script>
+
+
+
+
+

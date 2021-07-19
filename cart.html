@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+        #cartdiv{
+            display:grid;
+            grid-template-columns: repeat(4, 20%);
+            grid-gap:5%;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #head{
+            text-align:center;
+            text-decoration: underline;
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1 id='head'>MY CART</h1>
+   <div id="cartdiv"></div>
+   <button onclick="checkout()">CheckOut</button>
+</body>
+</html>
+
+<script>
+    var main_div = document.getElementById('cartdiv');
+
+    function appendCart(el){
+        var card = document.createElement('div');
+
+let p_name =document.createElement('h2');
+p_name.innerHTML= el.Name; 
+
+
+let p_brand =document.createElement('p');
+p_brand.innerHTML= el.Brand;
+
+let p_img =document.createElement('img');
+p_img.src= el.Image;
+
+let p_price =document.createElement('h4');
+p_price.innerHTML= el.price;
+
+
+
+
+
+
+
+card.append(p_name,p_brand,p_img,p_price);
+
+main_div.append(card);
+
+
+    }
+
+    function showCart(){
+
+        let data = JSON.parse(localStorage.getItem('cartitem'));
+
+        data.forEach(function(el){
+            appendCart(el);
+
+        });
+
+
+    }
+    showCart();
+
+    function checkout(){
+        window.location.href="checkout.html"
+    }
+</script>
